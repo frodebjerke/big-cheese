@@ -10,4 +10,6 @@ logs
 results
 build
 
+public/lib
+
 node_modules

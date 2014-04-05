@@ -1,0 +1,13 @@
+{
+  "name": "big-cheese-web",
+  "version": "0.0.1",
+  "dependencies": {
+    "requirejs": "latest",
+    "underscore-amd": "latest",
+    "require-handlebars-plugin": "latest",
+    "mithril": "~0.1.1"
+  },
+  "directory": "public/lib",
+  "devDependencies": {
+  }
+}
