@@ -1,0 +1,22 @@
+{
+  "name": "big-cheese",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {},
+  "url": "",
+  "engines": {
+    "node": "0.10.26",
+    "npm": "1.4.3"
+  },
+  "dependencies": {
+    "express": "3.x",
+    "express3-handlebars": "latest",
+    "underscore": "latest",
+    "elasticsearch": "^2.1.1"
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-less": "latest"
+  }
+}
