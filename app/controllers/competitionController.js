@@ -2,11 +2,19 @@ module.exports = function (es) {
   var data = [{
     id: 0,
     title: "Påske",
-    games: [],
-    participants: []
+    description: "Yolo",
+    games: [{
+      name: "Disco"
+    }],
+    participants: [{
+      name: "Frode"
+    }, {
+      name: "Vemund"
+    }]
   }, {
     id: 1,
     title: "Jul",
+    description: "",
     games: [],
     participants: []
   }];

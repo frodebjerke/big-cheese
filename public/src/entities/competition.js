@@ -5,6 +5,7 @@ function () {
   var Competition = function (data) {
     this.id = m.prop(data.id);
     this.title = m.prop(data.title);
+    this.description = m.prop(data.description);
     this.games = m.prop(data.games);
     this.participants = m.prop(data.participants);
   };

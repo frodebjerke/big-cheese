@@ -5,7 +5,7 @@ define([
 function (landingModule, competitionModule) {
   m.route(document.getElementById("main"), '/', {
     "/": landingModule,
-    "/competition/:id": competitionModule
+    "/competition/:id": competitionModule,
   });
 
   m.route.mode = 'search';
