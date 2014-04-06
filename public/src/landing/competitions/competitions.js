@@ -1,11 +1,7 @@
 define([
+  'entities/competition'
   ],
-function () {
-  var Competition = function (data) {
-    this.title = m.prop(data.title);
-  };
-
-  var Competitions = Array;
+function (Competition) {
 
   var Text = function () {
     this.title = "Konkurranser";
@@ -14,7 +10,7 @@ function () {
 
   return {
     Controller: function () {
-      this.competitions = new Competitions();
+      this.competitions = Competition.all();
       this.title = m.prop("");
 
       this.text = new Text();
@@ -32,9 +28,9 @@ function () {
         m("h1", ctrl.text.title),
         m("input", {onchange: m.withAttr("value", ctrl.title), value: ctrl.title()}),
         m("button", {onclick: ctrl.add.bind(ctrl, ctrl.title)}, ctrl.text.add),
-        m("ul.competitions-list", ctrl.competitions.map(function (comp) {
+        m("ul.competitions-list", ctrl.competitions().map(function (comp) {
           return m("li.el-competition", [
-            m("span.competitions-title", comp.title()),
+            m("a[href='/competition/"+ comp.id() +"'].competition-title", {config: m.route}, comp.title()),
           ]);
         }))
       ]);

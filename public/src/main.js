@@ -1,6 +1,12 @@
 define([
-  'landing/landing'
+  'landing/landing',
+  'competition/competition'
   ],
-function (landingModule) {
-  m.module(document.body, landingModule);
+function (landingModule, competitionModule) {
+  m.route(document.body, '/', {
+    "/": landingModule,
+    "/competition/:id": competitionModule
+  });
+
+  m.route.mode = 'search';
 });
