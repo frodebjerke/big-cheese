@@ -1,32 +1,32 @@
-define(['entities/competition'],
-function (Competition) {
+define([
+  'entities/competition',
+  'competition/games/games',
+  'competition/participants/participants',
+  'competition/info/info'
+  ],
+function (Competition, games, participants, info) {
   return {
     controller: function () {
       var id = m.route.param("id");
 
       this.competition = Competition.get(id);
+
+      this.competition.then(function (competition) {
+        this.games = new games.controller(competition.games);
+        this.participants = new participants.controller(competition.participants);
+        this.info = new info.controller(competition);
+      }.bind(this));
     },
     view: function (ctrl) {
       return m("div.row.el-competition", [
         m("div.col-sm-6", [
-          m("div.competition-info", [
-            m("h1", ctrl.competition().title()),
-            m("p", ctrl.competition().description())
-          ]),
+          info.view(ctrl.info),
           m("div.row", [
             m("div.col-lg-6", [
-              m("ul", ctrl.competition().participants().map(function (participant) {
-                return m("li.el-participant", [
-                  m("a[href='participant/'"+ participant.id+"]", {config: m.route}, participant.name)
-                ]);
-              }))
+              participants.view(ctrl.participants)
             ]),
             m("div.col-lg-6", [
-              m("ul", ctrl.competition().games().map(function (game) {
-                  return m("li.el-game", [
-                  m("a[href='game/'"+ game.id+"]", {config: m.route}, game.name)
-                ]);
-              }))
+              games.view(ctrl.games)
             ])
           ])
         ]),
