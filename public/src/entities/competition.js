@@ -3,7 +3,6 @@ define([
   ],
 function () {
   var Competition = function (data) {
-    this.id = m.prop(data.id);
     this.title = m.prop(data.title);
     this.description = m.prop(data.description);
     this.games = m.prop(data.games);
@@ -15,7 +14,15 @@ function () {
   };
 
   Competition.all = function () {
-    return m.request({method: "GET", url: "/api/competition", type: Competition});
+    return m.request({method: "GET", url: "/api/competition"});
+  };
+
+  Competition.create = function (data) {
+    return m.request({method: "POST", url: "/api/competition", data: data});
+  };
+
+  Competition.save = function (id, data) {
+    return m.request({method: "UPDATE", url: "/api/competition"+id, data: data});
   };
 
   return Competition;

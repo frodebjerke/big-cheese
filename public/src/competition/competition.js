@@ -1,5 +1,5 @@
 define([
-  'entities/competition',
+  'entities/Competition',
   'competition/games/games',
   'competition/participants/participants',
   'competition/info/info'

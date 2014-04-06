@@ -1,34 +1,56 @@
+var _ = require('underscore');
+
 module.exports = function (es) {
-  var data = [{
-    id: 0,
-    title: "Påske",
-    description: "Yolo",
-    games: [{
-      name: "Disco"
-    }],
-    participants: [{
-      name: "Frode"
-    }, {
-      name: "Vemund"
-    }]
-  }, {
-    id: 1,
-    title: "Jul",
-    description: "",
-    games: [],
-    participants: []
-  }];
+  var index = "bigcheese";
+  var type = "competition";
 
   var all = function (req, res) {
-    res.send(data);
+    es.search({
+      index: index,
+      type: type
+    }, function (error, response) {
+      if (error) res.send(error, "500");
+      var docs = _.map(response.hits.hits, function (doc) {
+        return {
+          id: doc._id,
+          title: doc._source.title,
+          description: doc._source.description
+        };
+      });
+      res.send(docs);
+    });
   };
 
   var get = function (req, res) {
-    res.send(data[req.params.id]);
+    var id = req.params.id;
+    es.get({
+      index: 'bigcheese',
+      type: 'competition',
+      id: id
+    }, function (error, response) {
+      if (error) res.send(error, "500");
+      res.send(response._source);
+    });
+  };
+
+  var create = function (req, res) {
+    console.log(req.body);
+    console.log(req.text);
+
+    var data = req.body;
+    es.create({
+      index: 'bigcheese',
+      type: 'competition',
+      body: data
+    }, function (error, response) {
+      if (error) res.send(error, "500");
+      res.send(response);
+    });
   };
 
   return {
     all: all,
-    get: get
+    get: get,
+    create: create
   };
 };
