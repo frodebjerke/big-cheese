@@ -3,7 +3,7 @@ define([
   'competition/competition'
   ],
 function (landingModule, competitionModule) {
-  m.route(document.body, '/', {
+  m.route(document.getElementById("main"), '/', {
     "/": landingModule,
     "/competition/:id": competitionModule
   });

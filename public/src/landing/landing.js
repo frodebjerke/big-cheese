@@ -10,14 +10,12 @@ function (competitions, ctrls) {
     },
 
     view: function (ctrl) {
-      return m('div.container-fluid', [
-        m('div.row', [
-          m('div.col-sm-6', [
-            ctrls.view(ctrl.ctrls)
-          ]),
-          m('div.col-sm-6', [
-            competitions.view(ctrl.competitions)
-          ])
+      return m('div.row', [
+        m('div.col-sm-6', [
+          ctrls.view(ctrl.ctrls)
+        ]),
+        m('div.col-sm-6', [
+          competitions.view(ctrl.competitions)
         ])
       ]);
     }
