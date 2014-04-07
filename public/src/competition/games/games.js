@@ -7,11 +7,14 @@ function () {
     },
 
     view: function (ctrl) {
-      return m("ul", ctrl.games().map(function (game) {
-          return m("li.el-game", [
-          m("a[href='game/'"+ game.id+"]", {config: m.route}, game.name)
-        ]);
-      }));
+      return m("div", [
+        m("h3", "Øvelser"),
+        m("ul", ctrl.games().map(function (game) {
+            return m("li.el-game", [
+            m("a[href='game/'"+ game.id+"]", {config: m.route}, game.name)
+          ]);
+        }))
+      ]);
     }
   };
 });
