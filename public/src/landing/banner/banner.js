@@ -11,6 +11,7 @@ function (_) {
 
   var tagCarousel = function (tagprop, tags) {
     if (tags.length) {
+      tagprop(_.shuffle(tags)[0]);
       setInterval(function () {
         var tag = _.shuffle(tags)[0];
         tagprop(tag);
@@ -31,7 +32,7 @@ function (_) {
       return m('div.el-banner', [
         m("div.banner-large.hidden-xs", [
           m("div.banner-intro", ctrl.text.intro),
-          m("div.banner-title", [
+          m("div.banner-title.", [
             m("span.title",ctrl.text.title),
             m("span.banner-titletag", ctrl.titletag())
           ])
