@@ -1,7 +1,7 @@
 var lib = '../lib/';
 
 require.config({
-  deps: ['mithril', 'main'],
+  deps: ['mithril', 'config/addevents', 'main'],
   paths: {
     underscore: lib + 'underscore-amd/underscore',
     mithril: lib + 'mithril/mithril.min',
