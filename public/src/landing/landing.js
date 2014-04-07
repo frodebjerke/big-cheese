@@ -1,18 +1,18 @@
 define([
   'landing/competitions/competitions',
-  'landing/ctrls/ctrls'
+  'landing/banner/banner'
   ],
-function (competitions, ctrls) {
+function (competitions, banner) {
   return {
     controller: function () {
       this.competitions = new competitions.Controller();
-      this.ctrls = new ctrls.Controller();
+      this.banner = new banner.Controller();
     },
 
     view: function (ctrl) {
       return m('div.row', [
         m('div.col-sm-6', [
-          ctrls.view(ctrl.ctrls)
+          banner.view(ctrl.banner)
         ]),
         m('div.col-sm-6', [
           competitions.view(ctrl.competitions)

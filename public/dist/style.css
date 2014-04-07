@@ -1,0 +1,24 @@
+.el-banner .banner-large {
+  margin-top: 30%;
+}
+.el-banner .banner-large .banner-intro {
+  font-size: 1.5em;
+  font-style: italic;
+}
+.el-banner .banner-large .banner-title {
+  position: relative;
+}
+.el-banner .banner-large .banner-title .title {
+  font-size: 4em;
+  font-weight: 900;
+}
+.el-banner .banner-large .banner-title .banner-titletag {
+  position: absolute;
+  color: red;
+  top: 0;
+  left: 1em;
+}
+.el-banner .banner-title {
+  text-transform: uppercase;
+}
+
