@@ -1,6 +1,6 @@
 define([
   'landing/competitions/list',
-  'landing/competitions/addCompetition'
+  'shared/competition/editCompetition'
   ],
 function (list, addCompetition) {
   var Text = function () {
@@ -11,14 +11,14 @@ function (list, addCompetition) {
   return {
     Controller: function () {
       this.list = new list.controller();
-      this.addCompetition = new addCompetition.controller();
+      this.addCompetition = new addCompetition.controller("/");
       this.showAddCompetition = m.prop(false);
 
       this.text = new Text();
 
       this.add = function (show) {
-        this.showAddCompetition(!show())
-      }
+        this.showAddCompetition(!show());
+      };
     },
 
     view: function (ctrl) {

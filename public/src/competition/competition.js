@@ -13,9 +13,9 @@ function (Competition, games, participants, info, leaderboard) {
       this.competition = Competition.get(id);
 
       this.competition.then(function (competition) {
-        this.games = new games.controller(competition.games);
-        this.participants = new participants.controller(competition.participants);
-        this.info = new info.controller(competition);
+        this.info = new info.controller(id, competition);
+        this.games = new games.controller(competition);
+        this.participants = new participants.controller(competition);
         this.leaderboard = new leaderboard.controller();
       }.bind(this));
     },

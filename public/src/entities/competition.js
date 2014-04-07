@@ -7,6 +7,15 @@ function () {
     this.description = m.prop(data.description);
     this.games = m.prop(data.games);
     this.participants = m.prop(data.participants);
+
+    this.getValues = function () {
+      return {
+        title: this.title(),
+        description: this.description(),
+        games: this.games(),
+        participants: this.participants()
+      };
+    };
   };
 
   Competition.get = function (id) {
@@ -22,7 +31,8 @@ function () {
   };
 
   Competition.save = function (id, data) {
-    return m.request({method: "UPDATE", url: "/api/competition"+id, data: data});
+    console.log(data);
+    return m.request({method: "put", url: "/api/competition/"+id, data: data.getValues()});
   };
 
   return Competition;

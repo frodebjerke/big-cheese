@@ -2,8 +2,8 @@ define([
   ],
 function () {
   return {
-    controller: function (games) {
-      this.games = games;
+    controller: function (competition) {
+      this.games = competition.games;
     },
 
     view: function (ctrl) {

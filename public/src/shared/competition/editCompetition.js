@@ -12,7 +12,7 @@ function (Competition) {
   };
 
   return {
-    controller: function (id, competition) {
+    controller: function (route, id, competition) {
       competition = competition || {};
       this.hasId = m.prop(id);
       this.title = competition.title || m.prop("");
@@ -21,17 +21,22 @@ function (Competition) {
       this.participants = competition.participants || m.prop([]);
 
       this.add = function () {
+        var req;
         if (this.hasId()) {
-          competition.save(id, competition);
+          req = Competition.save(id, competition);
         }
         else {
-          Competition.create({
+          req = Competition.create({
             title: this.title(),
             description: this.description(),
             games: this.games(),
             participants: this.participants()
-          }).then(function () {m.route("/")});
+          });
         }
+
+        req.then(function () {
+          m.route(route);
+        });
       };
     },
 
