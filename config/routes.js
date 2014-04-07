@@ -8,4 +8,5 @@
    app.get('/api/competition', competitionController.all);
    app.get("/api/competition/:id", competitionController.get);
    app.post("/api/competition", competitionController.create);
+   app.put("/api/competition/:id", competitionController.update);
  };

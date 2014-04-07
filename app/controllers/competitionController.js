@@ -34,9 +34,6 @@ module.exports = function (es) {
   };
 
   var create = function (req, res) {
-    console.log(req.body);
-    console.log(req.text);
-
     var data = req.body;
     es.create({
       index: 'bigcheese',
@@ -48,9 +45,25 @@ module.exports = function (es) {
     });
   };
 
+  var update = function (req, res) {
+    var data = req.body;
+    var id = req.params.id;
+
+    es.index({
+      index: 'bigcheese',
+      type: 'competition',
+      id: id,
+      body: data
+    }, function (error, response) {
+      if (error) throw new Error(error);
+      res.send(response);
+    });
+  };
+
   return {
     all: all,
     get: get,
-    create: create
+    create: create,
+    update: update
   };
 };
