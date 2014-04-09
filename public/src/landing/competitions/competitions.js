@@ -9,7 +9,7 @@ function (list, addCompetition) {
   };
 
   return {
-    Controller: function () {
+    controller: function () {
       this.list = new list.controller();
       this.addCompetition = new addCompetition.controller("/");
       this.showAddCompetition = m.prop(false);

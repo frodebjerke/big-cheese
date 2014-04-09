@@ -10,7 +10,7 @@ function (Competition) {
     view: function (ctrl) {
       return m("ul.competitions-list", ctrl.competitions().map(function (comp) {
         return m("li.el-competition", [
-          m("a[href='/competition/"+ comp.id +"'].competition-title", {config: m.route}, comp.title),
+          m("a.competition-title", {href: '/competition/'+ comp.id, config: m.route}, comp.title),
         ]);
       }));
     }
