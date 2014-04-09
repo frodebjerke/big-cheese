@@ -4,7 +4,6 @@
   "dependencies": {
     "requirejs": "latest",
     "underscore-amd": "latest",
-    "require-handlebars-plugin": "latest",
     "mithril": "git://github.com/lhorie/mithril.js.git#58ee32ff85bbf30a1f1eaf5bf5184c85058bc8f1"
   },
   "directory": "public/lib",
