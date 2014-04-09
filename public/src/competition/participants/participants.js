@@ -14,7 +14,8 @@ function (list, participant, addParticipant) {
       this.list = new list.controller({
         list: participants,
         add: addParticipant,
-        valueModule: participant
+        valueModule: participant,
+        text: listText
       });
     },
 

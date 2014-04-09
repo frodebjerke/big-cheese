@@ -13,7 +13,7 @@ function () {
         return new value.controller(val);
       };
 
-      this.text = text || options.text;
+      this.text = options.text || text;
 
       var ctrllist = options.list.map(function (val) {
         return addVal(val);
@@ -22,9 +22,7 @@ function () {
       this.valueModule = options.valueModule;
       this.addModule = options.add;
       this.addCtrl = new options.add.controller(function (newVal) {
-        console.log(newVal)
         ctrllist.push(addVal(newVal));
-        console.log(ctrllist);
       });
     },
 
