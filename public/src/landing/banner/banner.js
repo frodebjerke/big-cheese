@@ -1,7 +1,8 @@
 define([
-  'underscore'
+  'underscore',
+  'entities/Competition'
   ],
-function (_) {
+function (_, Competition) {
 
   var Text = function () {
     this.intro = "Vi kårer";
@@ -13,15 +14,16 @@ function (_) {
     if (tags.length) {
       tagprop(_.shuffle(tags)[0]);
       setInterval(function () {
+        m.startComputation();
         var tag = _.shuffle(tags)[0];
         tagprop(tag);
-        m.redraw();
+        m.endComputation();
       }, 3000);
     }
   };
 
   return {
-    Controller: function () {
+    controller: function () {
       this.text = new Text();
       this.titletag = m.prop("");
 
@@ -39,7 +41,7 @@ function (_) {
         ]),
         m("div.banner-small.visible-xs", [
           m("h1.banner-title", ctrl.text.title)
-        ])
+        ]),
       ]);
     }
   };
