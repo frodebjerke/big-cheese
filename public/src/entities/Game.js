@@ -10,5 +10,5 @@ function () {
     };
   };
 
-  return Participant;
+  return Game;
 });

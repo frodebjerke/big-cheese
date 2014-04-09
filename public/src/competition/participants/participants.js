@@ -1,34 +1,25 @@
 define([
-  'entities/Competition'
+  'shared/list',
+  'competition/participants/participant',
+  'competition/participants/addParticipant'
   ],
-function (Competition) {
-  return {
-    controller: function (competition) {
-      this.participants = competition.participants();
-      this.newName = m.prop("");
+function (list, participant, addParticipant) {
 
-      this.add = function (name) {
-        this.participants.push({name: name()});
-        this.newName("");
-        Competition.save(m.route.param("id"), competition);
-      };
+  var listText = {
+    title: "Utøvere"
+  };
+
+  return {
+    controller: function (participants) {
+      this.list = new list.controller({
+        list: participants,
+        add: addParticipant,
+        valueModule: participant
+      });
     },
 
     view: function (ctrl) {
-      return m("div", [
-        m("h3", "Utøvere"),
-        m("ul", ctrl.participants.map(function (participant) {
-          return m("li.el-participant", [
-            m("a[href='participant/'"+ participant.id+"]", {config: m.route}, participant.name)
-          ]);
-        })),
-        m("div", [
-          m("input", {onchange: m.withAttr("value", ctrl.newName)}, ctrl.newName()),
-          m("a", {onclick: ctrl.add.bind(ctrl, ctrl.newName)}, [
-            m("span.glyphicon.glyphicon-plus", "")
-          ])
-        ])
-      ]);
+      return new list.view(ctrl.list);
     }
   };
 });

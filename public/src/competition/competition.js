@@ -14,28 +14,28 @@ function (Competition, games, participants, info, leaderboard) {
 
       this.competition.then(function (competition) {
         this.info = new info.controller(id, competition);
-        this.games = new games.controller(competition);
-        this.participants = new participants.controller(competition);
+        //this.games = new games.controller(competition.games());
+        this.participants = new participants.controller(competition.participants());
         this.leaderboard = new leaderboard.controller();
       }.bind(this));
     },
     view: function (ctrl) {
       return m("div.row.el-competition", [
-        m("div.col-sm-6", [
+        m("div.col-md-6", [
           info.view(ctrl.info),
           m("div.row", [
-            m("div.col-xs-12.visible-xs", [
+            m("div.col-xs-12.visible-xs.visible-sm", [
               leaderboard.view(ctrl.leaderboard)
             ]),
-            m("div.col-lg-6", [
+            m(".col-xs-8.col-sm-6", [
               participants.view(ctrl.participants)
             ]),
-            m("div.col-lg-6", [
-              games.view(ctrl.games)
+            m(".col-xs-8.col-sm-6", [
+              //games.view(ctrl.games)
             ])
           ])
         ]),
-        m("div.col-sm-6.hidden-xs", [
+        m("div.col-md-6.hidden-xs.hidden-sm", [
           leaderboard.view(ctrl.leaderboard)
         ])
       ]);
