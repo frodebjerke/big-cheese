@@ -20,14 +20,14 @@ function (Participant, Game) {
   };
 
   Competition.get = function (id) {
-    return m.request({method: "GET", url: "/api/competition/"+id, type: Competition}).then(function (comp) {
-      comp.games(comp.games().map(function (game) {
+    return m.request({method: "GET", url: "/api/competition/"+id}).then(function (comp) {
+      comp.games = comp.games.map(function (game) {
         return new Game(game);
-      }));
-      comp.participants(comp.participants.map(function (participant) {
+      });
+      comp.participants = comp.participants.map(function (participant) {
         return new Participant(participant);
-      }));
-
+      });
+      return new Competition(comp);
     });
   };
 
