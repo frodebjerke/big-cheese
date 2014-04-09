@@ -5,8 +5,8 @@ define([
 function (competitions, banner) {
   return {
     controller: function () {
-      this.competitions = new competitions.Controller();
-      this.banner = new banner.Controller();
+      this.competitions = new competitions.controller();
+      this.banner = new banner.controller();
     },
 
     view: function (ctrl) {
