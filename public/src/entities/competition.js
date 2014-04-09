@@ -1,25 +1,34 @@
 define([
-
+  'entities/Participant',
+  'entities/Game'
   ],
-function () {
+function (Participant, Game) {
   var Competition = function (data) {
     this.title = m.prop(data.title);
     this.description = m.prop(data.description);
     this.games = m.prop(data.games);
     this.participants = m.prop(data.participants);
 
-    this.getValues = function () {
+    this.serialize = function () {
       return {
         title: this.title(),
         description: this.description(),
-        games: this.games(),
-        participants: this.participants()
+        games: this.games().serialize(),
+        participants: this.participants().serialize()
       };
     };
   };
 
   Competition.get = function (id) {
-    return m.request({method: "GET", url: "/api/competition/"+id, type: Competition});
+    return m.request({method: "GET", url: "/api/competition/"+id, type: Competition}).then(function (comp) {
+      comp.games(comp.games().map(function (game) {
+        return new Game(game);
+      }));
+      comp.participants(comp.participants.map(function (participant) {
+        return new Participant(participant);
+      }));
+
+    });
   };
 
   Competition.all = function () {
@@ -31,7 +40,6 @@ function () {
   };
 
   Competition.save = function (id, data) {
-    console.log(data);
     return m.request({method: "put", url: "/api/competition/"+id, data: data.getValues()});
   };
 
