@@ -16,7 +16,7 @@ function (Competition, games, participants, info, leaderboard) {
         m.events.on("competition:"+ id +":changed", competition.save.bind(competition, id));
 
         this.info = new info.controller(id, competition);
-        //this.games = new games.controller(competition.games());
+        this.games = new games.controller(competition.games());
         this.participants = new participants.controller(competition.participants());
         this.leaderboard = new leaderboard.controller();
       }.bind(this));
@@ -33,7 +33,7 @@ function (Competition, games, participants, info, leaderboard) {
               participants.view(ctrl.participants)
             ]),
             m(".col-xs-8.col-sm-6", [
-              //games.view(ctrl.games)
+              games.view(ctrl.games)
             ])
           ])
         ]),

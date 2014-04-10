@@ -1,21 +1,22 @@
 define([
-  'entities/Participant'
+  'entities/Game'
   ],
-function (Participant) {
+function (Game) {
 
   var text = {
-    add: "Legg til utøver"
+    add: "Legg til øvelse"
   };
 
   return {
     controller: function (add) {
       var id = m.route.param.competitionId;
       this.name = m.prop("");
-      this.add = function () {
-        add(new Participant({
+
+      this.submit = function () {
+        add(new Game({
           name: this.name()
         }));
-        m.events("competition:"+ id +":changed");
+        m.events.trigger("competition:"+ id +":changed");
         this.name("");
       };
     },
@@ -24,7 +25,7 @@ function (Participant) {
       return m("input.list-el-title", {
         placeholder: text.add,
         onchange: m.withAttr("value", ctrl.name),
-        onblur: ctrl.add.bind(ctrl),
+        onblur: ctrl.submit.bind(ctrl),
         value: ctrl.name()
       });
     }
