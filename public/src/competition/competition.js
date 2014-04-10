@@ -8,11 +8,13 @@ define([
 function (Competition, games, participants, info, leaderboard) {
   return {
     controller: function () {
-      var id = m.route.param("id");
+      var id = m.route.param("competitionId");
 
       this.competition = Competition.get(id);
 
       this.competition.then(function (competition) {
+        m.events.on("competition:"+ id +":changed", competition.save.bind(competition, id));
+
         this.info = new info.controller(id, competition);
         //this.games = new games.controller(competition.games());
         this.participants = new participants.controller(competition.participants());

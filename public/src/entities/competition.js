@@ -13,9 +13,13 @@ function (Participant, Game) {
       return {
         title: this.title(),
         description: this.description(),
-        games: this.games().serialize(),
-        participants: this.participants().serialize()
+        games: this.games().map(function (game) {return game.serialize(); }),
+        participants: this.participants().map(function (p) {return p.serialize(); })
       };
+    };
+
+    this.save = function (id) {
+      return m.request({method: "PUT", url: "/api/competition/"+id, data: this.serialize()});
     };
   };
 
@@ -37,10 +41,6 @@ function (Participant, Game) {
 
   Competition.create = function (data) {
     return m.request({method: "POST", url: "/api/competition", data: data});
-  };
-
-  Competition.save = function (id, data) {
-    return m.request({method: "put", url: "/api/competition/"+id, data: data.getValues()});
   };
 
   return Competition;

@@ -2,9 +2,11 @@ define([],
 function () {
   return {
     controller: function (participant) {
+      var id = m.route.param("competitionId");
       this.participant = participant;
       this.editName = m.prop(false);
       this.change = function () {
+        m.events.trigger("competition:"+ id +":changed");
         this.editName(false);
       };
     },
