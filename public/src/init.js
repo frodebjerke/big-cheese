@@ -5,5 +5,6 @@ require.config({
   paths: {
     underscore: lib + 'underscore-amd/underscore',
     mithril: lib + 'mithril/mithril',
+    elasticsearch: lib + 'elasticsearch/elasticsearch'
   }
 });

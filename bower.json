@@ -4,7 +4,8 @@
   "dependencies": {
     "requirejs": "latest",
     "underscore-amd": "latest",
-    "mithril": "git://github.com/lhorie/mithril.js.git#58ee32ff85bbf30a1f1eaf5bf5184c85058bc8f1"
+    "mithril": "git://github.com/lhorie/mithril.js.git#58ee32ff85bbf30a1f1eaf5bf5184c85058bc8f1",
+    "elasticsearch": "~2.1.2"
   },
   "directory": "public/lib",
   "devDependencies": {
